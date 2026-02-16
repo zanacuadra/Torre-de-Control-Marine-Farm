@@ -1,0 +1,560 @@
+/* =========================
+   VARIABLES / BRAND
+   ========================= */
+:root {
+  --mf-blue: #0c3e4d;
+  --mf-blue-2: #205f6d;
+  --mf-orange: #ff6c37;
+  --mf-white: #ffffff;
+  --mf-grey: #d6d1ca;
+  --mf-grey-light: #f4f4f4;
+  --mf-text: #073240;
+  --mf-green: #41695b;
+
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+
+  /* ✅ Recuperamos tipografía “pro” (si no está instalada, cae a Aptos) */
+  --font: "GT Walsheim Pro", "Aptos", "Arial", sans-serif;
+}
+
+/* =========================
+     RESET / BASE
+     ========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--mf-grey-light);
+  color: var(--mf-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================
+     CARDS
+     ========================= */
+.mf-card {
+  background: var(--mf-white);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* =========================
+     HEADINGS / TEXT
+     ========================= */
+.mf-h1 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--mf-blue);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.mf-muted {
+  color: #5b848f;
+}
+
+/* =========================
+     BUTTONS
+     ========================= */
+.mf-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font);
+}
+
+.mf-btn-primary {
+  background: var(--mf-orange);
+  color: var(--mf-white);
+}
+.mf-btn-primary:hover {
+  filter: brightness(0.96);
+}
+
+.mf-btn-secondary {
+  background: var(--mf-white);
+  border: 1px solid var(--mf-grey);
+  color: var(--mf-blue);
+}
+.mf-btn-secondary:hover {
+  border-color: var(--mf-blue);
+}
+
+/* =========================
+     CHIPS / PILLS
+     ========================= */
+.mf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--mf-grey);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: var(--mf-white);
+  font-size: 12px;
+  color: var(--mf-text);
+  font-weight: 600;
+}
+
+.mf-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--mf-white);
+  letter-spacing: 0.2px;
+}
+
+/* Status base */
+.mf-pill-blue {
+  background: var(--mf-blue);
+}
+.mf-pill-orange {
+  background: var(--mf-orange);
+}
+.mf-pill-green {
+  background: var(--mf-green);
+}
+
+/* Semáforos */
+.mf-pill-red {
+  background: #c0392b;
+}
+.mf-pill-yellow {
+  background: #f1c40f;
+  color: #0c3e4d;
+}
+
+/* =========================
+     SIDEBAR
+     ========================= */
+.mf-sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, #0c3e4d, #08303c);
+  color: var(--mf-white);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 14px;
+}
+
+/* ✅ Top: alineación “cuadrada” con el sidebar (no centrado raro) */
+.mf-sidebar-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+/* stacked layout: logo arriba, slogan abajo (alineado a la izquierda) */
+.mf-sidebar-top-stacked {
+  flex-direction: column;
+  align-items: flex-start; /* ✅ antes estaba center */
+  text-align: left; /* ✅ */
+  width: 100%;
+  padding-left: 6px; /* ✅ misma “columna” visual que menú */
+  gap: 10px;
+}
+
+.mf-sidebar-logo {
+  width: 118px; /* ✅ un poco más grande */
+  height: auto; /* ✅ mantiene proporción; evita “raro” */
+  display: block;
+}
+
+.mf-sidebar-slogan {
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: 0.85;
+  max-width: 220px;
+  font-weight: 600;
+}
+
+/* Navigation */
+.mf-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.mf-nav-btn {
+  background: transparent;
+  border: none;
+  color: var(--mf-white);
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  opacity: 0.88;
+  font-family: var(--font);
+}
+
+.mf-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 1;
+}
+
+.mf-nav-btn .top {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.1px;
+}
+
+.mf-nav-btn .bottom {
+  font-size: 11px;
+  opacity: 0.75;
+  font-weight: 650;
+  margin-top: 2px;
+}
+
+/* Dashboard main button */
+.mf-nav-btn-primary {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 14px 14px;
+}
+.mf-nav-btn-primary .top {
+  font-size: 16px;
+}
+.mf-nav-btn.active {
+  background: rgba(255, 255, 255, 0.22);
+  opacity: 1;
+}
+
+/* Sidebar footer */
+.mf-sidebar-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  opacity: 0.75;
+  padding-left: 6px; /* ✅ alinea con logo/menú */
+}
+
+.mf-sidebar-footer img {
+  width: 22px;
+  height: 22px;
+}
+
+/* =========================
+     PAGE HEADER (WHITE)
+     ========================= */
+.mf-page-header {
+  background: var(--mf-white);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow);
+}
+
+.mf-page-header-logo {
+  width: 42px; /* ✅ más grande */
+  height: 42px;
+}
+
+.mf-page-title {
+  font-size: 26px; /* ✅ vuelve “web title” */
+  font-weight: 900;
+  color: var(--mf-blue);
+  letter-spacing: 0.2px;
+  line-height: 1.05;
+}
+
+.mf-page-subtitle {
+  font-size: 14px; /* ✅ subtítulo más grande */
+  color: #5b848f;
+  font-weight: 650;
+  margin-top: 4px;
+}
+
+/* =========================
+     TABLES (DataTable)
+     ========================= */
+.mf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.mf-table th {
+  text-align: left;
+  padding: 10px;
+  background: #f6f7f8;
+  color: var(--mf-blue);
+  font-weight: 900;
+  letter-spacing: 0.15px;
+}
+
+.mf-table td {
+  padding: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mf-table tr:hover {
+  background: #fafafa;
+}
+
+/* =========================
+     DRAWER / SIDEPANEL
+     ========================= */
+.mf-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 40;
+}
+
+.mf-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 420px;
+  max-width: 90vw;
+  background: var(--mf-white);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
+.mf-drawer-header {
+  padding: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.mf-drawer-body {
+  padding: 16px;
+  overflow: auto;
+}
+
+/* Key-value blocks */
+.mf-kv {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 10px 12px;
+  font-size: 13px;
+}
+
+.mf-kv .k {
+  color: #5b848f;
+  font-weight: 650;
+}
+
+.mf-kv .v {
+  color: var(--mf-text);
+  font-weight: 800;
+}
+/* =========================
+   ✅ Smooth expand UX
+========================= */
+.mf-expand {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: max-height 260ms ease, opacity 180ms ease, transform 180ms ease;
+}
+
+.mf-expand-open {
+  max-height: 900px; /* suficiente para el panel */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mf-expand-inner {
+  padding-top: 0;
+}
+/* =========================
+   Layout base
+========================= */
+.mf-sidebar {
+  width: 260px;
+  background: var(--mf-blue);
+  color: var(--mf-white);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px;
+}
+
+.mf-sidebar-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 14px;
+}
+
+.mf-logo-white {
+  width: 120px;
+  height: auto;
+}
+
+.mf-slogan {
+  font-size: 12px;
+  opacity: 0.85;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.mf-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.mf-nav-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: transparent;
+  color: var(--mf-white);
+  opacity: 0.95;
+}
+
+.mf-nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mf-nav-item.active {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.mf-nav-primary {
+  padding: 14px 16px;
+}
+
+.mf-nav-top {
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.mf-nav-bottom {
+  margin-top: 2px;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.mf-sidebar-footer {
+  margin-top: auto;
+  font-size: 11px;
+  opacity: 0.8;
+  padding-top: 14px;
+  text-align: center;
+}
+
+.mf-main {
+  flex: 1;
+  padding: 18px;
+}
+
+.mf-topbar {
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mf-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mf-logo-blue {
+  width: 38px;
+  height: auto;
+}
+
+.mf-page-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--mf-blue);
+  line-height: 1.05;
+}
+
+.mf-page-subtitle {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #5b848f;
+}
+
+.mf-content {
+  margin-top: 14px;
+}
+
+/* =========================
+   ✅ Global filters (top-right)
+========================= */
+.mf-filters {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.mf-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mf-filter label {
+  font-size: 11px;
+  color: #5b848f;
+  font-weight: 700;
+}
+
+.mf-filter input {
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--mf-grey);
+  padding: 0 10px;
+  font-size: 12px;
+  background: var(--mf-white);
+  color: var(--mf-text);
+  outline: none;
+  width: 150px;
+}
+
+.mf-filter input:focus {
+  border-color: var(--mf-blue);
+}
+
+.mf-filter-clear {
+  height: 34px;
+  padding: 0 12px;
+}
