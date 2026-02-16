@@ -35,6 +35,13 @@ export const caliberOptions = [
   "10 lbs Up",
 ];
 
+// Aliases for easier imports
+export const products = productOptions;
+export const qualities = qualityOptions;
+export const calibers = caliberOptions;
+export const boxTypes = boxTypeOptions;
+export const boxFormats = boxFormatOptions;
+
 export const incotermOptions = ["CFR", "CIF", "FOB"];
 
 export const paymentMethodOptions = [
