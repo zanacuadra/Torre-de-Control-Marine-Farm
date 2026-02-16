@@ -898,7 +898,7 @@ export function CommercialKpiPage(props: Props) {
             { header: "País", render: (r) => r.country },
             { header: "Mes", render: (r) => r.month },
             { header: "Forecast (kg)", render: (r) => r.forecastKg.toLocaleString("es-CL") },
-            { header: "Precio (USD/kg)", render: (r) => r.forecastPrice.toFixed(2) },
+            { header: "Precio (USD/kg)", render: (r) => r.avgPriceUsdPerKg.toFixed(2) },
             {
               header: "Confianza",
               render: (r) => (
@@ -1009,6 +1009,15 @@ export function CommercialKpiPage(props: Props) {
           </div>
         </div>
       ) : null}
+
+      {/* Claims Detail Modal */}
+      {selectedClaim && (
+        <ClaimDetailModal
+          claim={selectedClaim}
+          onClose={() => setSelectedClaim(null)}
+          onSave={handleSaveClaim}
+        />
+      )}
     </div>
   );
 }
