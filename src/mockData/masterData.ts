@@ -5,14 +5,12 @@ export const speciesOptions: Species[] = ["COHO", "SALAR"];
 export const productOptions = [
   "HON",
   "HG",
-  "TRIM A",
-  "TRIM B",
-  "TRIM C",
-  "TRIM D",
-  "TRIM E",
-  "TRIM F",
-  "BIT & PIECES",
+  "TC",
+  "TD",
+  "TE",
 ];
+
+export const cutOptions = ["Scale Off", "Scale On"];
 
 export const boxTypeOptions = ["10 Kg", "25 Kg", "30 Kg"];
 
@@ -41,14 +39,13 @@ export const qualities = qualityOptions;
 export const calibers = caliberOptions;
 export const boxTypes = boxTypeOptions;
 export const boxFormats = boxFormatOptions;
+export const cuts = cutOptions;
 
 export const incotermOptions = ["CFR", "CIF", "FOB"];
 
 export const paymentMethodOptions = [
-  "Payment Agst. Docs.",
-  "LC 60 days",
-  "Advance 20% / Balance Docs",
-  "TT in advance",
+  "Payment Against Documents by Mail",
+  "20% ADV / Balance Against Docs by Mail",
 ];
 
 export const countries = [
@@ -60,6 +57,7 @@ export const countries = [
   "MALAYSIA",
   "SINGAPORE",
 ];
+
 export const ports = [
   "HCMC",
   "HAI PHONG",
