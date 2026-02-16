@@ -41,6 +41,8 @@ export const commercialSummaryByMonth: Record<
   },
 };
 
+export type ClaimStatus = "PENDIENTE ENVÍO" | "PENDIENTE RESPUESTA" | "OK";
+
 export type ClaimRow = {
   id: string;
   customer: string;
@@ -48,40 +50,89 @@ export type ClaimRow = {
   product: string;
   qtyKg: number;
   severity: "LOW" | "MED" | "HIGH";
-  status: "OPEN" | "INVESTIGATING" | "CLOSED";
+  status: ClaimStatus;
   openedDate: string;
+  description?: string;
+  receivedDate?: string;
+  responsiblePerson?: string;
+  closeReason?: string;
+  creditNote?: boolean;
+  creditNoteAmount?: number;
+  closedDate?: string;
 };
 
 export const claims: ClaimRow[] = [
   {
-    id: "cl1",
+    id: "CL-001",
     customer: 'LLC "UNIFROST"',
     market: "UEE",
     product: "Atlantic Frozen HON IQF 5–6",
     qtyKg: 15600,
     severity: "MED",
-    status: "INVESTIGATING",
+    status: "PENDIENTE RESPUESTA",
     openedDate: "2025-06-14",
+    description: "Cliente reporta calidad inferior en lote 45623. Peces con escamas y manchas marrones en algunos filetes.",
+    receivedDate: "2025-06-15",
+    responsiblePerson: "Carlos Mendoza",
   },
   {
-    id: "cl2",
+    id: "CL-002",
     customer: "Dongwon",
     market: "Korea",
     product: "Coho Frozen HON 10+",
     qtyKg: 8000,
     severity: "LOW",
-    status: "OPEN",
+    status: "PENDIENTE ENVÍO",
     openedDate: "2025-07-03",
+    description: "Embalaje presenta daños menores en 3 pallets. Solicitan inspección fotográfica.",
+    receivedDate: "2025-07-04",
+    responsiblePerson: "Ana Fernández",
   },
   {
-    id: "cl3",
+    id: "CL-003",
     customer: "Minute Gourmet",
     market: "Philippines",
     product: "Atlantic Fillet Trim C",
     qtyKg: 5000,
     severity: "HIGH",
-    status: "OPEN",
+    status: "PENDIENTE RESPUESTA",
     openedDate: "2025-06-28",
+    description: "Temperatura fuera de rango durante transporte. Container llegó a 2°C por encima del límite especificado.",
+    receivedDate: "2025-06-29",
+    responsiblePerson: "Roberto Silva",
+  },
+  {
+    id: "CL-004",
+    customer: "Seafood Global Co.",
+    market: "Vietnam",
+    product: "Coho HG IQF 8-9 lbs",
+    qtyKg: 12000,
+    severity: "LOW",
+    status: "OK",
+    openedDate: "2025-05-10",
+    description: "Cliente reportó pesos variables en algunas cajas. Solicitó verificación de peso neto.",
+    receivedDate: "2025-05-11",
+    responsiblePerson: "María López",
+    closeReason: "Se verificaron los pesos y están dentro del rango aceptable (+/- 2%). Cliente aceptó explicación técnica.",
+    creditNote: false,
+    closedDate: "2025-05-18",
+  },
+  {
+    id: "CL-005",
+    customer: "Thai Foods Ltd",
+    market: "Thailand",
+    product: "Atlantic HON 6-7",
+    qtyKg: 18500,
+    severity: "MED",
+    status: "OK",
+    openedDate: "2025-06-01",
+    description: "Reclamo por calibre inconsistente. 15% del lote con calibre fuera de especificación.",
+    receivedDate: "2025-06-02",
+    responsiblePerson: "Carlos Mendoza",
+    closeReason: "Se confirmó error en clasificación. Se ofreció nota de crédito por el 10% del valor del lote afectado como compensación.",
+    creditNote: true,
+    creditNoteAmount: 8500,
+    closedDate: "2025-06-12",
   },
 ];
 
@@ -91,7 +142,7 @@ export type ForecastRow = {
   country: string;
   month: string;
   forecastKg: number;
-  forecastPrice: number; // solo precio
+  forecastPrice: number;
   confidence: "LOW" | "MED" | "HIGH";
 };
 
