@@ -1,3 +1,5 @@
+import type { ClaimRow, ClaimStatus } from "../types";
+
 export type PeriodKey = "2025-05" | "2025-06" | "2025-07";
 
 export const commercialSummaryByMonth: Record<
@@ -41,26 +43,6 @@ export const commercialSummaryByMonth: Record<
   },
 };
 
-export type ClaimStatus = "PENDIENTE ENVÍO" | "PENDIENTE RESPUESTA" | "OK";
-
-export type ClaimRow = {
-  id: string;
-  customer: string;
-  market: string;
-  product: string;
-  qtyKg: number;
-  severity: "LOW" | "MED" | "HIGH";
-  status: ClaimStatus;
-  openedDate: string;
-  description?: string;
-  receivedDate?: string;
-  responsiblePerson?: string;
-  closeReason?: string;
-  creditNote?: boolean;
-  creditNoteAmount?: number;
-  closedDate?: string;
-};
-
 export const claims: ClaimRow[] = [
   {
     id: "CL-001",
@@ -70,8 +52,8 @@ export const claims: ClaimRow[] = [
     qtyKg: 15600,
     severity: "MED",
     status: "PENDIENTE RESPUESTA",
-    openedDate: "2025-06-14",
-    description: "Cliente reporta calidad inferior en lote 45623. Peces con escamas y manchas marrones en algunos filetes.",
+    openedAt: "2025-06-14",
+    glosa: "Cliente reporta calidad inferior en lote 45623. Peces con escamas y manchas marrones en algunos filetes.",
     receivedDate: "2025-06-15",
     responsiblePerson: "Carlos Mendoza",
   },
@@ -83,8 +65,8 @@ export const claims: ClaimRow[] = [
     qtyKg: 8000,
     severity: "LOW",
     status: "PENDIENTE ENVÍO",
-    openedDate: "2025-07-03",
-    description: "Embalaje presenta daños menores en 3 pallets. Solicitan inspección fotográfica.",
+    openedAt: "2025-07-03",
+    glosa: "Embalaje presenta daños menores en 3 pallets. Solicitan inspección fotográfica.",
     receivedDate: "2025-07-04",
     responsiblePerson: "Ana Fernández",
   },
@@ -96,53 +78,53 @@ export const claims: ClaimRow[] = [
     qtyKg: 5000,
     severity: "HIGH",
     status: "PENDIENTE RESPUESTA",
-    openedDate: "2025-06-28",
-    description: "Temperatura fuera de rango durante transporte. Container llegó a 2°C por encima del límite especificado.",
+    openedAt: "2025-06-28",
+    glosa: "Temperatura fuera de rango durante transporte. Container llegó a 2°C por encima del límite especificado.",
     receivedDate: "2025-06-29",
     responsiblePerson: "Roberto Silva",
   },
   {
     id: "CL-004",
-    customer: "Seafood Global Co.",
-    market: "Vietnam",
-    product: "Coho HG IQF 8-9 lbs",
+    customer: 'LLC "UNIFROST"',
+    market: "UEE",
+    product: "Coho Frozen Portions",
     qtyKg: 12000,
     severity: "LOW",
     status: "OK",
-    openedDate: "2025-05-10",
-    description: "Cliente reportó pesos variables en algunas cajas. Solicitó verificación de peso neto.",
+    openedAt: "2025-05-10",
+    glosa: "Etiquetado incorrecto en 2 pallets (falta fecha de producción).",
     receivedDate: "2025-05-11",
-    responsiblePerson: "María López",
-    closeReason: "Se verificaron los pesos y están dentro del rango aceptable (+/- 2%). Cliente aceptó explicación técnica.",
-    creditNote: false,
+    responsiblePerson: "Carlos Mendoza",
+    closeReason: "Se envió corrección de etiquetas y declaración jurada de fechas de producción correctas. Cliente aceptó solución.",
+    creditNote: "NO",
     closedDate: "2025-05-18",
   },
   {
     id: "CL-005",
-    customer: "Thai Foods Ltd",
-    market: "Thailand",
-    product: "Atlantic HON 6-7",
+    customer: "Moreodor",
+    market: "Russia",
+    product: "Atlantic Frozen HON 6-7",
     qtyKg: 18500,
     severity: "MED",
     status: "OK",
-    openedDate: "2025-06-01",
-    description: "Reclamo por calibre inconsistente. 15% del lote con calibre fuera de especificación.",
-    receivedDate: "2025-06-02",
-    responsiblePerson: "Carlos Mendoza",
-    closeReason: "Se confirmó error en clasificación. Se ofreció nota de crédito por el 10% del valor del lote afectado como compensación.",
-    creditNote: true,
-    creditNoteAmount: 8500,
-    closedDate: "2025-06-12",
+    openedAt: "2025-04-22",
+    glosa: "Desviación de calibre en 15% del lote. Cliente solicita compensación.",
+    receivedDate: "2025-04-23",
+    responsiblePerson: "Ana Fernández",
+    closeReason: "Se acordó descuento del 8% por desviación de calibre. Cliente satisfecho con compensación.",
+    creditNote: "SI",
+    creditNoteAmount: 11840,
+    closedDate: "2025-05-02",
   },
 ];
 
 export type ForecastRow = {
   id: string;
   customer: string;
-  country: string;
+  market: string;
   month: string;
   forecastKg: number;
-  forecastPrice: number;
+  avgPriceUsdPerKg: number;
   confidence: "LOW" | "MED" | "HIGH";
 };
 
@@ -150,37 +132,37 @@ export const forecastByCustomer: ForecastRow[] = [
   {
     id: "f1",
     customer: 'LLC "UNIFROST"',
-    country: "Russia",
+    market: "Russia",
     month: "2025-08",
     forecastKg: 180000,
-    forecastPrice: 7.75,
+    avgPriceUsdPerKg: 7.75,
     confidence: "HIGH",
   },
   {
     id: "f2",
     customer: "Moreodor",
-    country: "Russia",
+    market: "Russia",
     month: "2025-08",
     forecastKg: 120000,
-    forecastPrice: 7.65,
+    avgPriceUsdPerKg: 7.65,
     confidence: "MED",
   },
   {
     id: "f3",
     customer: "Dongwon",
-    country: "Korea",
+    market: "Korea",
     month: "2025-08",
     forecastKg: 95000,
-    forecastPrice: 6.35,
+    avgPriceUsdPerKg: 6.35,
     confidence: "MED",
   },
   {
     id: "f4",
     customer: "Minute Gourmet",
-    country: "Philippines",
+    market: "Philippines",
     month: "2025-08",
     forecastKg: 70000,
-    forecastPrice: 7.1,
+    avgPriceUsdPerKg: 7.1,
     confidence: "LOW",
   },
 ];

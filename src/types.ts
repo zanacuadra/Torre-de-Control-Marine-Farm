@@ -192,3 +192,29 @@ export type CommercialTargets = {
     }
   >;
 };
+
+/* ===== Commercial KPI - Claims ===== */
+
+export type ClaimStatus = "PENDIENTE ENVÍO" | "PENDIENTE RESPUESTA" | "OK";
+
+export type ClaimSeverity = "LOW" | "MED" | "HIGH";
+
+export type ClaimRow = {
+  id: string;
+  customer: string;
+  market: string;
+  product: string;
+  qtyKg: number;
+  severity: ClaimSeverity;
+  status: ClaimStatus;
+  openedAt: string; // ISO date
+  
+  // Campos adicionales para gestión completa
+  glosa?: string; // descripción/razón del claim
+  receivedDate?: string; // fecha de recibo
+  responsiblePerson?: string; // responsable de responder
+  closeReason?: string; // razón de cierre (cuando status = OK)
+  creditNote?: "SI" | "NO"; // nota de crédito
+  creditNoteAmount?: number; // monto de nota de crédito (si creditNote = SI)
+  closedDate?: string; // fecha de cierre (cuando status = OK)
+};

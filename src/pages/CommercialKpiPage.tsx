@@ -7,10 +7,10 @@ import {
   claims,
   forecastByCustomer,
   PeriodKey,
-  ClaimRow,
+
   ForecastRow,
 } from "../mockData/commercialKpis";
-import type { Shipment, DocsStatus, CommercialTargets } from "../types";
+import type { Shipment, DocsStatus, CommercialTargets, ClaimRow, ClaimStatus } from "../types";
 import "../styles/mf.css";
 
 type TabKey = "overview" | "claims" | "forecast";
