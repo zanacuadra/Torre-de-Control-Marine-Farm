@@ -91,13 +91,13 @@ const ClaimDetailModal = ({
   const [editedClaim, setEditedClaim] = React.useState<ClaimRow | null>(claim);
   const [showCloseModal, setShowCloseModal] = React.useState(false);
   const [closeReason, setCloseReason] = React.useState("");
-  const [creditNote, setCreditNote] = React.useState(false);
+  const [creditNote, setCreditNote] = React.useState<"SI" | "NO">("NO");
   const [creditNoteAmount, setCreditNoteAmount] = React.useState("");
 
   React.useEffect(() => {
     setEditedClaim(claim);
     setCloseReason(claim?.closeReason || "");
-    setCreditNote(claim?.creditNote || false);
+    setCreditNote(claim?.creditNote || "NO");
     setCreditNoteAmount(claim?.creditNoteAmount?.toString() || "");
   }, [claim]);
 
@@ -117,7 +117,7 @@ const ClaimDetailModal = ({
       alert("Por favor ingrese la razón de cierre");
       return;
     }
-    if (creditNote && (!creditNoteAmount || parseFloat(creditNoteAmount) <= 0)) {
+    if (creditNote === "SI" && (!creditNoteAmount || parseFloat(creditNoteAmount) <= 0)) {
       alert("Por favor ingrese un monto válido para la nota de crédito");
       return;
     }
@@ -127,7 +127,7 @@ const ClaimDetailModal = ({
       status: "OK",
       closeReason: closeReason.trim(),
       creditNote,
-      creditNoteAmount: creditNote ? parseFloat(creditNoteAmount) : undefined,
+      creditNoteAmount: creditNote === "SI" ? parseFloat(creditNoteAmount) : undefined,
       closedDate: new Date().toISOString().split("T")[0],
     };
 
@@ -225,8 +225,8 @@ const ClaimDetailModal = ({
                 Descripción del Claim
               </label>
               <textarea
-                value={editedClaim.description || ""}
-                onChange={(e) => setEditedClaim({ ...editedClaim, description: e.target.value })}
+                value={editedClaim.glosa || ""}
+                onChange={(e) => setEditedClaim({ ...editedClaim, glosa: e.target.value })}
                 style={{
                   width: "100%",
                   minHeight: 80,
@@ -325,9 +325,9 @@ const ClaimDetailModal = ({
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                   <div>
                     <div className="mf-muted" style={{ fontSize: 12 }}>Nota de Crédito:</div>
-                    <div>{editedClaim.creditNote ? "SÍ" : "NO"}</div>
+                    <div>{editedClaim.creditNote === "SI" ? "SÍ" : "NO"}</div>
                   </div>
-                  {editedClaim.creditNote && editedClaim.creditNoteAmount && (
+                  {editedClaim.creditNote === "SI" && editedClaim.creditNoteAmount && (
                     <div>
                       <div className="mf-muted" style={{ fontSize: 12 }}>Monto:</div>
                       <div style={{ fontWeight: 600 }}>
@@ -418,9 +418,9 @@ const ClaimDetailModal = ({
                   Nota de Crédito
                 </label>
                 <select
-                  value={creditNote ? "SI" : "NO"}
+                  value={creditNote}
                   onChange={(e) => {
-                    setCreditNote(e.target.value === "SI");
+                    setCreditNote(e.target.value as "SI" | "NO");
                     if (e.target.value === "NO") {
                       setCreditNoteAmount("");
                     }
@@ -440,7 +440,7 @@ const ClaimDetailModal = ({
               </div>
 
               {/* Monto de Nota de Crédito */}
-              {creditNote && (
+              {creditNote === "SI" && (
                 <div>
                   <label className="mf-muted" style={{ fontSize: 12, display: "block", marginBottom: 4 }}>
                     Monto de Nota de Crédito (USD) *
@@ -881,7 +881,7 @@ export function CommercialKpiPage(props: Props) {
             },
             {
               header: "Fecha apertura",
-              render: (r) => new Date(r.openedDate).toLocaleDateString("es-CL"),
+              render: (r) => new Date(r.openedAt).toLocaleDateString("es-CL"),
             },
           ]}
         />

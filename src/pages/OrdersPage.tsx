@@ -446,11 +446,12 @@ export default function OrdersPage(props: Props) {
                     <Field label="Razón de atraso (obligatoria)">
                       <select
                         value={expanded.delayReasonCode || ""}
-                        onChange={(e) =>
+                        onChange={(e) => {
+                          e.stopPropagation();
                           updateDelayFields(expanded.id, {
                             delayReasonCode: e.target.value as DelayReasonCode,
-                          })
-                        }
+                          });
+                        }}
                         onClick={stop}
                         onMouseDown={stop}
                         style={inputStyle}
@@ -467,11 +468,12 @@ export default function OrdersPage(props: Props) {
                     <Field label="Responsable liberación / seguimiento (obligatorio)">
                       <select
                         value={expanded.delayOwner || ""}
-                        onChange={(e) =>
+                        onChange={(e) => {
+                          e.stopPropagation();
                           updateDelayFields(expanded.id, {
                             delayOwner: e.target.value as DelayOwner,
-                          })
-                        }
+                          });
+                        }}
                         onClick={stop}
                         onMouseDown={stop}
                         style={inputStyle}
@@ -488,11 +490,12 @@ export default function OrdersPage(props: Props) {
                     <Field label="Comentario corto (opcional, máx 120)">
                       <input
                         value={expanded.delayComment || ""}
-                        onChange={(e) =>
+                        onChange={(e) => {
+                          e.stopPropagation();
                           updateDelayFields(expanded.id, {
                             delayComment: e.target.value,
-                          })
-                        }
+                          });
+                        }}
                         onClick={stop}
                         onMouseDown={stop}
                         style={inputStyle}
